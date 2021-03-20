@@ -13,13 +13,13 @@ class CreateDistrictsTable extends Migration
      */
     public function up()
     {
-        Schema::enableForeignKeyConstraints();
+        // Schema::enableForeignKeyConstraints();
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('division_id');
             $table->string('distirct_name')->nullable();
-            $table->integer('division_id')->unsigned();
             $table->timestamps();
-            $table->foreign('divisions_id')->references('id')->on('divisions');
+            $table->foreign('division_id')->references('id')->on('divisions');
             // $table->foreignId('divisions_id')->constrained();
             // $table->foreign('divisions_id')->references('id')->on('divisions');
         });

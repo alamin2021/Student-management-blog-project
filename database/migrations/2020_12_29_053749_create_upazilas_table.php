@@ -13,19 +13,19 @@ class CreateUpazilasTable extends Migration
      */
     public function up()
     {
-        Schema::enableForeignKeyConstraints();
+        // Schema::enableForeignKeyConstraints();
         Schema::create('upazilas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('division_id');
+            $table->unsignedBigInteger('district_id');
             $table->string('upazila_name')->nullable();
-            $table->integer('division_id')->unsigned();
-            $table->integer('district_id')->unsigned();
             $table->timestamps();
 
             // $table->foreignId('divisions_id')->constrained();
             // $table->foreignId('districts_id')->constrained();
 
-            $table->foreign('divisions_id')->references('id')->on('divisions');
-            $table->foreign('districts_id')->references('id')->on('districts');
+            $table->foreign('division_id')->references('id')->on('divisions');
+            $table->foreign('district_id')->references('id')->on('districts');
         });
     }
 
